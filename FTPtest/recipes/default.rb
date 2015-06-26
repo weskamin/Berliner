@@ -17,5 +17,12 @@ template "/etc/vsftpd.conf" do
   notifies :restart, 'service[vsftpd]', :immediately
 end
 
+service 'vsftpd' do
+  service_name value_for_platform_family(
+    'rhel' => 'vsftpd',
+    'debian' => 'vsftpd'
+  )
+  action :enable
+end
 
 #include_recipe ""
