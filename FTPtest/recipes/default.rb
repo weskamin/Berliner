@@ -17,15 +17,25 @@ template "/etc/vsftpd.conf" do
   notifies :restart, 'service[vsftpd]', :immediately
 end
 
-service 'vsftpd' do
+# service 'vsftpd' do
+#   if node["platfrom"] == "ubuntu" && node["platform_version"].to_f >= 14.04
+#     provider Chef::Provider::Service::Upstart
+#   end
+#   service_name value_for_platform_family(
+#     'rhel' => 'vsftpd',
+#     'debian' => 'vsftpd'
+#   )
+#   action :enable
+# end
+
+#include_recipe ""
+
+service "vsftpd" do
   if node["platfrom"] == "ubuntu" && node["platform_version"].to_f >= 14.04
     provider Chef::Provider::Service::Upstart
   end
-  service_name value_for_platform_family(
-    'rhel' => 'vsftpd',
-    'debian' => 'vsftpd'
-  )
-  action :enable
+  action [ :enable, :start ]
+  supports :restart => true
 end
 
-#include_recipe ""
+
