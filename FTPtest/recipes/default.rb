@@ -14,9 +14,8 @@ template "/etc/vsftpd.conf" do
   owner 'root'
   group 'root'
   mode 0644
-  notifies :run, resources(:bash => 'restart_vsftpd')
+  notifies :restart, 'service[vsftpd]', :immediately
 end
-
 
 
 #include_recipe ""
