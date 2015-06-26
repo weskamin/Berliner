@@ -1,0 +1,6 @@
+name             "FTP"
+description      "Installs and configures VSFTP"
+long_description "Things and stuff!"
+maintainer       "AWS OpsWorks"
+license          "Apache 2.0"
+version          "1.0.0"
