@@ -18,6 +18,9 @@ template "/etc/vsftpd.conf" do
 end
 
 service 'vsftpd' do
+  if node["platfrom"] == "ubuntu" && node["platform_version"].to_f >= 14.04
+    provider Chef::Provider::Service::Upstart
+  end
   service_name value_for_platform_family(
     'rhel' => 'vsftpd',
     'debian' => 'vsftpd'
