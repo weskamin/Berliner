@@ -4,7 +4,7 @@ case node[:platform_family]
 when "rhel"
 	package_name "vsftpd"
 when "debian"
-	package_Name "vsftpd"
+	package_name "vsftpd"
 end
 action:install
 end
